@@ -7,7 +7,7 @@ class GameState
     // Ressources
     public int Credits  { get; set; }
     public int Fuel     { get; set; }
-    public int MaxFuel  => Class.MaxFuel;
+    public int MaxFuel  => Class.MaxFuel + BonusMaxFuel;
     public int Day      { get; set; } = 1;
 
     // Horloge — un jour passe au bout de Clock.ActionsPerDay actions « de terrain »
@@ -113,6 +113,56 @@ class GameState
     // Faction relationship — plus granulaire que "Faction"
     public Dictionary<FactionId, int> FactionStanding { get; set; }
 
+    // NPCs typés
+    public Dictionary<string, PersistentNpc> KnownNpcs { get; } = new();
+
+    // Stalker system
+    public int     StalkerLevel       { get; set; } = 0;
+    public string? StalkerName        { get; set; }
+    public string? StalkerObsession   { get; set; }
+    public int     StalkerActionsLeft { get; set; } = 0;
+
+    // Arcs narratifs
+    public HashSet<string>       ActiveArcs    { get; } = new();
+    public HashSet<string>       CompletedArcs { get; } = new();
+    public Dictionary<string,int> ArcProgress  { get; } = new();
+
+    // Secrets débloqués
+    public HashSet<string> UnlockedSecrets { get; } = new();
+
+    // États des stations — mémoire de ce qui s'est passé dans chaque station
+    public Dictionary<string, StationState> StationStates { get; } = new();
+
+    public StationState GetStationState(string name)
+    {
+        if (!StationStates.TryGetValue(name, out var s))
+        {
+            s = new StationState(name);
+            StationStates[name] = s;
+        }
+        return s;
+    }
+
+    public void UpdateStationState(string name, StationState newState)
+        => StationStates[name] = newState;
+
+    // Boss de stations vaincus
+    public HashSet<string> StationBossesBeaten { get; } = new();
+
+    // Nexus / Seigneur de l'Espace
+    public HashSet<string> RalliedStations    { get; } = new();
+    public int             StationPiecesRallied { get; set; } = 0;
+
+    // Titre de chef de faction
+    public bool IsFactionLeader { get; set; } = false;
+
+    // Traits spéciaux
+    public bool IsCannibalistic { get; set; } = false;
+
+    // Améliorations vaisseau (atelier)
+    public int BonusMaxFuel   { get; set; } = 0;
+    public int BonusNavRange  { get; set; } = 0;
+
     // Rivaux et alliés durables
     public HashSet<string> Rivals { get; } = new();
     public HashSet<string> Allies { get; } = new();
@@ -120,8 +170,15 @@ class GameState
     // Boss state — track si beaten, vengeful, corrupted, etc.
     public Dictionary<string, object> StationBossStates { get; } = new();  // Will be typed BossState at runtime
 
+    // Système de quêtes
+    public List<Quest>      ActiveQuests      { get; } = new();
+    public HashSet<string>  CompletedQuestIds { get; } = new();
+
     // Quêtes refusées — pour conséquences
     public HashSet<string> RefusedQuestIds { get; } = new();
+
+    // Arcs narratifs échoués définitivement cette run
+    public HashSet<string> FailedArcs { get; } = new();
 
     // Stations "conquered" — marquées par faction du joueur
     public Dictionary<string, FactionId> ConqueredStations { get; } = new();

@@ -1,15 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "E+NpFa2sW0Y=",
+  "dgSpecHash": "1g2IMKmm4Xk=",
   "success": true,
-  "projectFilePath": "\\\\wsl.localhost\\Ubuntu\\home\\raphaelcau\\RepoSnipe\\VoidTrader.csproj",
+  "projectFilePath": "C:\\Users\\caura\\RepoSnipe\\VoidTrader.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\raphael.cau\\.nuget\\packages\\spectre.console\\0.55.2\\spectre.console.0.55.2.nupkg.sha512",
-    "C:\\Users\\raphael.cau\\.nuget\\packages\\spectre.console.ansi\\0.55.2\\spectre.console.ansi.0.55.2.nupkg.sha512",
-    "C:\\Users\\raphael.cau\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.22\\microsoft.netcore.app.ref.8.0.22.nupkg.sha512",
-    "C:\\Users\\raphael.cau\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.22\\microsoft.windowsdesktop.app.ref.8.0.22.nupkg.sha512",
-    "C:\\Users\\raphael.cau\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.22\\microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512",
-    "C:\\Users\\raphael.cau\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.22\\microsoft.netcore.app.host.win-x64.8.0.22.nupkg.sha512"
+    "C:\\Users\\caura\\.nuget\\packages\\spectre.console\\0.55.2\\spectre.console.0.55.2.nupkg.sha512",
+    "C:\\Users\\caura\\.nuget\\packages\\spectre.console.ansi\\0.55.2\\spectre.console.ansi.0.55.2.nupkg.sha512"
   ],
   "logs": []
 }

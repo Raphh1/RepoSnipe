@@ -132,7 +132,7 @@ static class Events
                 if (Rng.Next(100) < 40 && !cls.AutoKillsPirates)
                 {
                     var spaceEnemy = SpaceCombat.GetForStation(state.CurrentStation);
-                    Narrator.Say($"Alerte ! {spaceEnemy.Name} intercepte ta route !", Color.Red);
+                    AnnounceSpaceCombat(state, spaceEnemy);
                     var outcome = SpaceCombat.Start(state, spaceEnemy);
                     Situations.ApplyCombatOutcome(state, outcome);
                 }
@@ -790,6 +790,35 @@ static class Events
             state.Credits += cls.PeriodicIncome;
             Display.ShowEvent($"Le virement familial est arrivé. +{cls.PeriodicIncome}cr.", Color.Green);
         }
+
+        // ── Maintenance quotidienne du vaisseau ───────────────────────────
+        // Base 50cr/jour + 0.5cr par PV max au-dessus de 100 (vaisseau amélioré coûte plus)
+        // Premier jour gratuit — on vient de partir.
+        if (state.Day > 1)
+        {
+            var maintenanceCost = 50 + Math.Max(0, state.ShipMaxHp - 100) / 2;
+
+            if (state.Credits >= maintenanceCost)
+            {
+                state.Credits -= maintenanceCost;
+                Display.ShowEvent($"Maintenance vaisseau : -{maintenanceCost}cr.", Color.Grey);
+            }
+            else
+            {
+                // Pas les moyens — le vaisseau se dégrade
+                var degradation = Rng.Next(5, 20);
+                state.ShipHp = Math.Max(1, state.ShipHp - degradation);
+                Display.ShowEvent(
+                    $"Maintenance impayée — le vaisseau se dégrade. -{degradation} PV vaisseau. " +
+                    $"({state.ShipHp}/{state.ShipMaxHp} PV)", Color.Red);
+            }
+        }
+
+        // ── Inflation — avertissement ─────────────────────────────────────
+        if (state.Day == 10)
+            Display.ShowEvent("Les prix dans les marchés commencent à augmenter avec le temps.", Color.Yellow);
+        if (state.Day == 25)
+            Display.ShowEvent("L'inflation s'est accentuée. Les marchés sont nettement plus chers.", Color.OrangeRed1);
     }
 
     // Effets liés UNIQUEMENT au fait de voyager (en plus des coûts quotidiens).
@@ -823,13 +852,42 @@ static class Events
         }
     }
 
+    // ── ANNONCE COMBAT SPATIAL ────────────────────────────────────────────────
+
+    static void AnnounceSpaceCombat(GameState state, SpaceEnemy enemy, string? extraMsg = null)
+    {
+        AnsiConsole.WriteLine();
+        AnsiConsole.Write(new Rule("[red bold]⚠  ALERTE VAISSEAU  ⚠[/]").RuleStyle("red"));
+        AnsiConsole.WriteLine();
+        Thread.Sleep(500);
+
+        AnsiConsole.MarkupLine("[red]Signal radar non identifié sur trajectoire d'interception.[/]");
+        Thread.Sleep(400);
+        AnsiConsole.MarkupLine($"[red bold]Contact confirmé — {enemy.Name}.[/]");
+        Thread.Sleep(400);
+        AnsiConsole.MarkupLine($"[grey]{enemy.Description}[/]");
+        Thread.Sleep(300);
+
+        if (extraMsg != null)
+        {
+            AnsiConsole.WriteLine();
+            AnsiConsole.MarkupLine($"[orange1]{extraMsg}[/]");
+        }
+
+        AnsiConsole.WriteLine();
+        AnsiConsole.MarkupLine("[grey dim]Boucliers en ligne. Systèmes d'armement actifs.[/]");
+        Thread.Sleep(600);
+        Narrator.Pause();
+    }
+
     static void TriggerBountyHunter(GameState state)
     {
         var tier    = state.Reputation <= -800 ? Combat.TierHigh : Combat.TierMid;
         var hunter  = tier[Rng.Next(tier.Count)];
         var prime   = Math.Abs(state.Reputation) * 2;
 
-        Narrator.Say($"Un signal d'alerte. Un chasseur de primes t'intercepte en route. Ta tête vaut {prime}cr.", Color.Red);
+        var spaceHunter = SpaceCombat.GetForStation(state.CurrentStation);
+        AnnounceSpaceCombat(state, spaceHunter, $"Un chasseur de primes. Ta tête vaut {prime}cr.");
 
         ChoiceMenu.Resolve(new Situation("Un chasseur de primes bloque ta route.", new List<Choice>
         {

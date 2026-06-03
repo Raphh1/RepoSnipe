@@ -137,7 +137,9 @@ static void MenuTravel(GameState state)
                 gs.VisitedStations.Add(s.Name);
 
                 // Usure vaisseau à chaque voyage
-                gs.ShipHp = Math.Max(1, gs.ShipHp - new Random().Next(2, 8));
+                var wear = new Random().Next(2, 8);
+                gs.ShipHp = Math.Max(1, gs.ShipHp - wear);
+                Display.ShowEvent($"Usure mécanique en route. -{wear} PV vaisseau. ({gs.ShipHp}/{gs.ShipMaxHp})", Spectre.Console.Color.Grey);
 
                 AnsiConsole.WriteLine();
                 AnsiConsole.MarkupLine($"[steelblue1]── {s.Name} ──[/]  [grey]{dist:N0}M km parcourus — Jour {gs.Day}[/]");

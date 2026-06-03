@@ -82,8 +82,6 @@ static class SpaceCombat
         var dodging  = false; // Manœuvre active ce tour
         var combatEnd = CombatOutcome.Victory; // pour les actions qui terminent le combat
 
-        Narrator.Say($"Contact ! {enemy.Name} en approche.", Color.Red);
-        AnsiConsole.MarkupLine($"[grey]{enemy.Description}[/]");
         AnsiConsole.WriteLine();
 
         while (true)

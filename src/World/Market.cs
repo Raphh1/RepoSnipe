@@ -32,7 +32,7 @@ static class Market
         ["Marchandises illégales"]= 800,
     };
 
-    public static int GetPrice(string item, string? station = null)
+    public static int GetPrice(string item, string? station = null, int day = 0)
     {
         var base_ = BasePrices.GetValueOrDefault(item, 100);
         var variance = Rng.Next(-30, 31);
@@ -42,6 +42,13 @@ static class Market
         {
             var mod = StationModifier(item, station);
             price   = (int)(price * mod);
+        }
+
+        // Inflation : +2% par jour au-delà du jour 10, plafonnée à +80%
+        if (day > 10)
+        {
+            var infDays = Math.Min(day - 10, 40); // 40 jours max = +80%
+            price = (int)(price * (1f + infDays * 0.02f));
         }
 
         return Math.Max(10, price);

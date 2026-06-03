@@ -36,10 +36,34 @@ static class Situations
         }
     }
 
+    static void ShowStationChanges(GameState state)
+    {
+        var ss       = state.GetStationState(state.CurrentStation);
+        var daysSince = ss.LastVisitDay > 0 ? state.Day - ss.LastVisitDay : -1;
+
+        if (daysSince > 3 && (ss.EventsHappened?.Count > 0 || ss.ControlledBy != null))
+        {
+            AnsiConsole.WriteLine();
+            if (ss.ControlledBy != null)
+            {
+                var fName = Factions.Info.TryGetValue(ss.ControlledBy.Value, out var fi) ? fi.Name : ss.ControlledBy.ToString();
+                AnsiConsole.MarkupLine($"  [magenta1]La station a changé de mains. Elle est maintenant sous contrôle de {fName}.[/]");
+            }
+            if (ss.EventsHappened?.Contains("Boss_Defeated") == true && daysSince > 0)
+                AnsiConsole.MarkupLine($"  [grey]La station porte encore les marques de la bataille — l'ambiance est différente depuis que son chef est tombé.[/]");
+            AnsiConsole.WriteLine();
+        }
+
+        // Met à jour le jour de visite
+        state.UpdateStationState(state.CurrentStation,
+            state.GetStationState(state.CurrentStation) with { LastVisitDay = state.Day });
+    }
+
     public static Situation Arrival(GameState state)
     {
         var station = Universe.Get(state.CurrentStation);
         ShowArrivalNpcReaction(state);
+        ShowStationChanges(state);
         // Déclencheurs d'arcs narratifs à chaque arrivée
         NarrativeArcs.CheckTriggers(state);
         // Quêtes complétées à l'arrivée

@@ -88,6 +88,7 @@ static class NarrativeArcs
         if (state.CurrentStation != "Les Décombres de Vael") return;
 
         SetProgress(state, ArcVael, 1);
+        state.ArcProgress["vael_start_day"] = state.Day;
         AnsiConsole.WriteLine();
         AnsiConsole.Write(new Rule("[grey]ARC — L'ENQUÊTE DE VAEL[/]").RuleStyle("grey"));
         Narrator.Say("En fouillant les Décombres, tu trouves un corps récent — pas une victime de la guerre ancienne. Quelqu'un est mort ici il y a moins d'une semaine. Personne d'autre n'a l'air de s'en inquiéter.", Color.Grey);
@@ -114,10 +115,66 @@ static class NarrativeArcs
 
     static void CheckProgress(GameState state)
     {
+        CheckFailures(state);
         ProgressAlanossa(state);
         ProgressRaphazarus(state);
         ProgressVael(state);
         ProgressFaction(state);
+    }
+
+    // ── ÉCHECS DÉFINITIFS ────────────────────────────────────────────────────
+
+    static void FailArc(GameState state, string arc, string reason)
+    {
+        if (state.FailedArcs.Contains(arc)) return;
+        state.ActiveArcs.Remove(arc);
+        state.ArcProgress.Remove(arc);
+        state.FailedArcs.Add(arc);
+
+        AnsiConsole.WriteLine();
+        AnsiConsole.Write(new Rule("[grey]ARC — ÉCHEC DÉFINITIF[/]").RuleStyle("grey dim"));
+        Narrator.Say(reason, Color.Grey);
+        AnsiConsole.WriteLine();
+    }
+
+    static void CheckFailures(GameState state)
+    {
+        // Alanossa : si réputation trop négative et arc non démarré après le jour 5
+        if (state.ActiveArcs.Contains(ArcAlanossa)
+            && state.Reputation < -200
+            && Progress(state, ArcAlanossa) <= 1)
+        {
+            FailArc(state, ArcAlanossa,
+                "Ta réputation de criminel notoire a précédé ton passage. Alanossa refuse de te recevoir — elle ne traite pas avec les gens qu'on finira par lui envoyer pour te tuer. L'arc La Dette de Sang est définitivement fermé.");
+        }
+
+        // Raphazarus : si tu n'as pas progressé après jour 20 depuis le déclenchement
+        if (state.ActiveArcs.Contains(ArcRaphazarus)
+            && Progress(state, ArcRaphazarus) == 1
+            && state.Day > 20)
+        {
+            FailArc(state, ArcRaphazarus,
+                "Trop de temps s'est écoulé sans que tu reviennes déchiffrer les symboles. Raphazarus a conclu que tu n'étais pas prêt. L'arc Le Prophète du Vide est définitivement fermé.");
+        }
+
+        // Vael : si tu n'as pas interrogé l'Ancien dans les 15 jours suivant la découverte
+        if (state.ActiveArcs.Contains(ArcVael)
+            && Progress(state, ArcVael) == 1
+            && state.Day > state.ArcProgress.GetValueOrDefault("vael_start_day", 0) + 15
+            && state.ArcProgress.ContainsKey("vael_start_day"))
+        {
+            FailArc(state, ArcVael,
+                "L'Ancien de Vael est mort avant que tu ne le retrouves. La piste s'est refroidie. Le coupable est parti depuis longtemps. L'arc L'Enquête de Vael est définitivement fermé.");
+        }
+
+        // Faction : si tu quittes la faction alors que l'arc est actif
+        if (state.ActiveArcs.Contains(ArcFaction)
+            && state.Faction == FactionId.None
+            && Progress(state, ArcFaction) >= 1)
+        {
+            FailArc(state, ArcFaction,
+                "Tu as quitté ta faction alors que la guerre des factions battait son plein. Aucune faction ne te fera plus confiance pour une opération de cette envergure. L'arc La Guerre des Factions est définitivement fermé.");
+        }
     }
 
     static void ProgressAlanossa(GameState state)

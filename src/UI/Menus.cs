@@ -29,7 +29,7 @@ static class Menus
 
             foreach (var g in station.Goods)
             {
-                var price  = ApplyBuyPrice(state, Market.GetPrice(g, state.CurrentStation), g);
+                var price  = ApplyBuyPrice(state, Market.GetPrice(g, state.CurrentStation, state.Day), g);
                 var banned = state.Class.CannotBuyWeapons && g == "Armes";
                 var consumInfo = Consumables.IsConsumable(g)
                     ? $"  [green dim]{Consumables.Effects[g].Description}[/]" : "";
@@ -96,7 +96,7 @@ static class Menus
         {
             var good  = kv.Key;
             var qty   = kv.Value;
-            var price = (int)(Market.GetPrice(good, state.CurrentStation) * sellMod);
+            var price = (int)(Market.GetPrice(good, state.CurrentStation, state.Day) * sellMod);
             if (state.Class.MedicBonus && good == "Médicaments")
                 price = (int)(price * 1.5);
 
@@ -228,7 +228,7 @@ static class Menus
 
     public static void DoRefuel(GameState state)
     {
-        var price   = Market.GetPrice("Cellules de carburant");
+        var price   = Market.GetPrice("Cellules de carburant", state.CurrentStation, state.Day);
         var missing = state.MaxFuel - state.Fuel;
 
         AnsiConsole.MarkupLine($"[grey]Prix :[/] {price}cr/unité   [grey]Manquant :[/] {missing}   [grey]Pour remplir :[/] {price * missing}cr");

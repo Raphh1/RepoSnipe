@@ -213,6 +213,9 @@ static class Exploration
             state.Reputation += 40;
             Display.ShowEvent($"Tu as terrassé le maître de {state.CurrentStation}. +40 réputation.", Color.Gold1);
             QuestSystem.CheckKillQuests(state, state.CurrentStation);
+            // Mémoriser l'événement dans l'état de station
+            var ss = state.GetStationState(state.CurrentStation);
+            state.UpdateStationState(state.CurrentStation, ss.RecordEvent("Boss_Defeated") with { BossStatus = BossState.Defeated });
             Narrator.Pause();
         }
         else Situations.ApplyCombatOutcome(state, outcome);
