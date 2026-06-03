@@ -1,0 +1,623 @@
+{
+  "dangerous": [
+    {
+      "setup": "Tu remarques une brique légèrement déplacée dans le mur. Quelqu'un a caché quelque chose là, récemment.",
+      "choices": [
+        { "label": "Examiner discrètement", "flavor": "Derrière la brique, une liasse de crédits et un bout de papier avec des chiffres. Une cache active.", "outcome": "credits_medium" },
+        { "label": "Signaler à un garde corrompu contre une part", "flavor": "Il prend 60%, te laisse 40%. C'est une transaction propre dans un endroit sale.", "outcome": "credits_small+rep_minus_tiny" },
+        { "label": "Ignorer et passer", "flavor": "Tu continues. Quelqu'un d'autre trouvera.", "outcome": "nothing" }
+      ]
+    },
+    {
+      "setup": "Un homme blessé est affalé dans un recoin sombre. Il respire encore. Un couteau ensanglanté est à ses pieds — le sien, pas celui de son agresseur.",
+      "choices": [
+        { "label": "L'aider — soigner et appeler des secours", "flavor": "Il reprend conscience. Ses yeux te cherchent. 'Merci. J'oublierai pas.' Il sait des choses, cet homme.", "outcome": "rep_medium+credits_small" },
+        { "label": "Le fouiller discrètement", "flavor": "Il n'est pas mort. Il fait semblant. Tu t'en rends compte trop tard. Ses doigts se ferment sur ton poignet.", "outcome": "combat_easy" },
+        { "label": "Prendre le couteau et partir", "flavor": "Une belle lame. Il t'a vu faire mais il ne peut pas te suivre. Pas maintenant.", "outcome": "item_weapon_low+rep_minus_small" },
+        { "label": "Passer sans t'arrêter", "flavor": "Tu continues. Ce n'est pas ton problème. Tu te demandes pendant trois couloirs si tu as eu raison.", "outcome": "rep_minus_tiny" }
+      ]
+    },
+    {
+      "setup": "Trois enfants t'entourent avec des sourires trop larges. Ils sont coordonnés. Tu as vu ça avant — pas des enfants qui jouent, des enfants qui travaillent.",
+      "choices": [
+        { "label": "Garder les mains dans les poches et reculer vite", "flavor": "Tu casses la formation. Ils échangent un regard. Une prochaine fois peut-être.", "outcome": "nothing" },
+        { "label": "Attraper celui qui s'approche le plus", "flavor": "Il se débat en criant. Les adultes regardent. C'est toi le méchant dans cette scène.", "outcome": "rep_minus_small" },
+        { "label": "Leur donner quelque chose — jouer le jeu", "flavor": "Tu sors quelques crédits. Ils repartent satisfaits. Moins cher que ce qu'ils auraient pris.", "outcome": "lose_credits_tiny+rep_tiny" }
+      ]
+    },
+    {
+      "setup": "Une porte métallique entrouverte laisse passer de la lumière et une voix qui compte de l'argent à voix haute. Des rires autour.",
+      "choices": [
+        { "label": "Observer depuis le couloir", "flavor": "Un jeu de dés clandestin. Tu repères le système de triche en deux minutes. Tu peux exploiter ça.", "outcome": "credits_small" },
+        { "label": "Entrer et participer", "flavor": "Ils t'acceptent avec méfiance. La chance tourne — pour toi, ce soir.", "outcome": "credits_medium" },
+        { "label": "Entrer et proposer une mise haute", "flavor": "Les regards changent. Tu joues. Tu perds. Ils sont bons.", "outcome": "lose_credits_medium" },
+        { "label": "Continuer sans s'arrêter", "flavor": "La porte se referme derrière toi comme si tu n'avais jamais existé.", "outcome": "nothing" }
+      ]
+    },
+    {
+      "setup": "Un graffiti récent sur un mur — une carte simple, des symboles. Quelqu'un a indiqué quelque chose à quelqu'un, et tu es là avant l'autre.",
+      "choices": [
+        { "label": "Suivre les indications", "flavor": "Une cache. Bien planquée, bien fournie. T'as eu de la chance ce coup-ci.", "outcome": "credits_large+item_common" },
+        { "label": "Effacer le graffiti et attendre", "flavor": "Quelqu'un arrive. Il cherche le message. Tu peux lui parler ou lui voler ce qu'il avait prévu de récupérer.", "outcome": "credits_medium+rep_minus_tiny" },
+        { "label": "Ignorer", "flavor": "Ce n'était probablement pas pour toi de toute façon.", "outcome": "nothing" }
+      ]
+    },
+    {
+      "setup": "Une armoire de service est ouverte. À l'intérieur, de l'équipement de maintenance — et quelque chose de manifestement hors contexte.",
+      "choices": [
+        { "label": "Fouiller l'armoire complètement", "flavor": "Pièces détachées propres, une arme planquée dans du chiffon, un cahier de codes. Jackpot discret.", "outcome": "item_weapon_low+item_common" },
+        { "label": "Prendre juste une chose et refermer", "flavor": "Tu prends ce qui a l'air le plus précieux. Discrètement. Efficacement.", "outcome": "credits_small+item_common" },
+        { "label": "Signaler à un garde", "flavor": "Il enquête. Il revient. Il te remercie sèchement. Deux crédits dans la main.", "outcome": "credits_tiny+rep_tiny" }
+      ]
+    },
+    {
+      "setup": "Tu entends une dispute derrière une porte fermée. Des voix — une forte, une suppliante. Quelque chose ne va pas.",
+      "choices": [
+        { "label": "Ouvrir la porte et intervenir", "flavor": "L'homme fort recule, surpris. La personne suppliante s'enfuit. Il te regarde.", "outcome": "combat_medium" },
+        { "label": "Écouter pour comprendre d'abord", "flavor": "Une dette. Il veut être payé. Tu comprends qui a tort. Tu peux exploiter l'information.", "outcome": "credits_small+rep_tiny" },
+        { "label": "Frapper à la porte — faire savoir que tu es là", "flavor": "Le silence tombe. La porte s'ouvre. Le fort te fixe. La situation est contrôlée — pour l'instant.", "outcome": "rep_small" },
+        { "label": "Passer ton chemin", "flavor": "Pas ton affaire. Pas ton problème. Les deux voix continuent derrière toi.", "outcome": "nothing" }
+      ]
+    },
+    {
+      "setup": "Un conduit de ventilation ouvert donne sur une section de la station non indiquée sur aucun plan. Large assez pour passer.",
+      "choices": [
+        { "label": "Entrer dans le conduit", "flavor": "Sombre, étroit, puis soudainement ouvert. Une salle cachée. Des caisses. Des gens dorment ici.", "outcome": "credits_medium+rep_small" },
+        { "label": "Refermer le conduit et partir", "flavor": "Ce que t'as vu, tu préfères ne pas savoir. Certains espaces sont secrets pour de bonnes raisons.", "outcome": "nothing" }
+      ]
+    },
+    {
+      "setup": "Une pharmacie improvisée — des produits sur une bâche, une femme assise derrière qui connaît chaque composition sans regarder les étiquettes.",
+      "choices": [
+        { "label": "Acheter des médicaments", "flavor": "Elle te vend ce dont tu as besoin sans te demander pourquoi. Le prix est juste.", "outcome": "hp_medium+lose_credits_small" },
+        { "label": "Lui parler — lui demander des informations locales", "flavor": "Elle connaît tout le monde qui a été blessé cette semaine. C'est une carte de renseignements vivante.", "outcome": "rep_small+credits_tiny" },
+        { "label": "Voler ce que tu veux", "flavor": "Elle crie. Tout le monde se retourne. Ce n'était pas une bonne idée.", "outcome": "item_food+rep_minus_medium+combat_easy" }
+      ]
+    },
+    {
+      "setup": "Des traces de sang frais mènent d'un couloir à une porte. Récent. Peut-être dix minutes.",
+      "choices": [
+        { "label": "Suivre les traces", "flavor": "Ça mène à un homme mort. Ses affaires sont intactes — ses agresseurs étaient pressés.", "outcome": "credits_medium+item_common" },
+        { "label": "Ne pas suivre les traces", "flavor": "Tu tournes à l'angle opposé. Tu n'as rien vu.", "outcome": "nothing" },
+        { "label": "Signaler aux autorités", "flavor": "Les gardes arrivent. Ils te questionnent. Tu perds du temps. Ils ne te remercient pas.", "outcome": "rep_tiny+lose_hp_tiny" }
+      ]
+    },
+    {
+      "setup": "Un homme t'offre de l'information en échange d'un service. Il ne dit pas quel service avant que tu acceptes.",
+      "choices": [
+        { "label": "Accepter sans savoir", "flavor": "Il veut que tu livres quelque chose quelque part. Ce que c'est, tu préfères ne pas savoir. Mais ça paie.", "outcome": "credits_large+rep_minus_small" },
+        { "label": "Demander ce que c'est d'abord", "flavor": "Il évalue ta curiosité. Il décide que tu mérites une réponse partielle. Assez pour décider.", "outcome": "rep_tiny+credits_small" },
+        { "label": "Refuser", "flavor": "Il hausse les épaules. 'T'as l'air d'un type prudent. C'est peut-être bien.'", "outcome": "rep_tiny" }
+      ]
+    },
+    {
+      "setup": "Tu trouves un terminal de communication allumé et déverrouillé. La session active donne accès à des messages privés.",
+      "choices": [
+        { "label": "Lire les messages", "flavor": "Des détails financiers. Des coordonnées. Une liste de noms. Des informations précieuses... et dangereuses.", "outcome": "credits_medium+rep_minus_small" },
+        { "label": "Fermer la session sans lire", "flavor": "Tu ne touches pas à ce qui ne t'appartient pas. C'est peut-être un test.", "outcome": "rep_small" },
+        { "label": "Envoyer un message anonyme depuis la session", "flavor": "Tu crées une perturbation. Quelqu'un va s'inquiéter. Peut-être qu'ils paieront pour savoir qui.", "outcome": "credits_small+combat_easy" }
+      ]
+    },
+    {
+      "setup": "Un sac abandonné dans un recoin. Trop neuf pour être oublié par accident.",
+      "choices": [
+        { "label": "L'ouvrir", "flavor": "De l'équipement de qualité. Des crédits. Un terminal avec une adresse unique.", "outcome": "credits_medium+item_common" },
+        { "label": "Le surveiller de loin", "flavor": "Quelqu'un revient le chercher après dix minutes. Il ne l'a pas laissé. Il le cachait.", "outcome": "rep_small+credits_tiny" },
+        { "label": "Partir sans y toucher", "flavor": "Certains sacs piégés sont conçus pour avoir l'air tentants.", "outcome": "nothing" }
+      ]
+    },
+    {
+      "setup": "Un réseau de caisses empilées crée un passage alternatif vers une section de la station. Discret. Pas officiel.",
+      "choices": [
+        { "label": "Emprunter ce chemin", "flavor": "Le passage mène à une zone non surveillée. Des gens y vivent. Des choses y transitent.", "outcome": "credits_small+item_rare" },
+        { "label": "Rester sur le chemin officiel", "flavor": "Plus sûr. Moins intéressant.", "outcome": "nothing" }
+      ]
+    },
+    {
+      "setup": "Un individu te tend une enveloppe sans un mot et repart en sens inverse. Son dos ne révèle rien.",
+      "choices": [
+        { "label": "Ouvrir l'enveloppe immédiatement", "flavor": "Des crédits. Un bout de papier avec une adresse. Pas de nom.", "outcome": "credits_medium" },
+        { "label": "Le rattraper pour demander des explications", "flavor": "Il accélère. Quand il tourne à l'angle, il n'est plus là.", "outcome": "nothing" },
+        { "label": "Jeter l'enveloppe sans l'ouvrir", "flavor": "Tu ne sauras jamais. C'est peut-être la meilleure décision que tu aies prise aujourd'hui.", "outcome": "rep_tiny" }
+      ]
+    },
+    {
+      "setup": "Deux garde se disputent devant un accès sécurisé. Ils ne font pas attention à ce qui passe.",
+      "choices": [
+        { "label": "Profiter de la distraction pour passer l'accès", "flavor": "Tu passes. Au-delà il y a une zone de stockage privée. Personne pour surveiller.", "outcome": "credits_large+rep_minus_small" },
+        { "label": "Participer à leur dispute pour les distraire encore plus", "flavor": "Ça tourne à l'absurde. Un troisième garde arrive. Tout le monde se retourne vers toi.", "outcome": "combat_easy+rep_minus_small" },
+        { "label": "Continuer ton chemin", "flavor": "Leurs problèmes ne sont pas les tiens.", "outcome": "nothing" }
+      ]
+    },
+    {
+      "setup": "Un ancien panneau pointe vers 'niveau -3 — accès restreint'. Le panneau est récent. Quelqu'un a ajouté une flèche en dessous à la main.",
+      "choices": [
+        { "label": "Suivre la flèche ajoutée à la main", "flavor": "La flèche mène à un marché informel. Des gens qui vendent des choses qui méritent d'être là, en bas.", "outcome": "item_rare+credits_medium" },
+        { "label": "Suivre l'indication officielle", "flavor": "Accès bloqué. Le panneau mentait ou la situation a changé depuis.", "outcome": "nothing" },
+        { "label": "Chercher qui a ajouté la flèche", "flavor": "Tu retrouves quelqu'un. Il est surpris. Il t'explique ce qu'il y a en bas.", "outcome": "rep_small+credits_tiny" }
+      ]
+    },
+    {
+      "setup": "Une odeur de brûlé vient d'un couloir latéral. Pas une urgence — quelqu'un fait cuire quelque chose d'illégal.",
+      "choices": [
+        { "label": "Aller voir", "flavor": "Un laboratoire de chimie improvisé. L'opérateur te regarde. 'T'achètes ou tu dégages ?'", "outcome": "addiction+credits_medium" },
+        { "label": "Ignorer l'odeur", "flavor": "Pas ton affaire. Les affaires illégales bien menées ont leur propre odeur de pérennité.", "outcome": "nothing" },
+        { "label": "Dénoncer aux gardes pour une récompense", "flavor": "Les gardes obtiennent le labo. Toi tu obtiens peu et un ennemi que tu n'as pas vu.", "outcome": "credits_tiny+rep_minus_medium" }
+      ]
+    },
+    {
+      "setup": "Une femme debout dans un couloir te regarde venir depuis longtemps. Trop longtemps. Elle attendait quelqu'un. Peut-être toi.",
+      "choices": [
+        { "label": "L'approcher directement", "flavor": "'T'es en retard.' Elle te donne quelque chose. Elle repart avant que tu puisses poser une question.", "outcome": "credits_medium+item_rare" },
+        { "label": "Changer de direction", "flavor": "Elle ne te suit pas. Mais ses yeux te suivent jusqu'à ce que tu tournes l'angle.", "outcome": "nothing" },
+        { "label": "La regarder depuis loin pour comprendre la situation", "flavor": "Elle attend encore. Quelqu'un d'autre arrive. Vous vous regardez. Le deal se fait sans toi.", "outcome": "rep_tiny" }
+      ]
+    },
+    {
+      "setup": "Dans les profondeurs de la zone, tu trouves une salle que les habitants semblent éviter. Pas de panneau. Juste un espace que personne ne traverse.",
+      "choices": [
+        { "label": "Y entrer", "flavor": "Il y a quelque chose dans les murs. Un stockage secret dont les derniers utilisateurs ont oublié l'existence ou sont morts.", "outcome": "credits_large+item_common" },
+        { "label": "Observer les habitants passer", "flavor": "Certains accélèrent. D'autres font semblant de ne pas voir la porte. Quelque chose s'est passé ici.", "outcome": "rep_small" },
+        { "label": "Marquer l'endroit pour y revenir plus tard", "flavor": "Tu notes l'emplacement. La prochaine fois tu seras préparé.", "outcome": "nothing" }
+      ]
+    }
+  ],
+  "peaceful": [
+    {
+      "setup": "Un vieil homme assis sur un banc te regarde approcher. Il a cet air de quelqu'un qui a beaucoup de temps et beaucoup à dire si on lui demande.",
+      "choices": [
+        { "label": "S'asseoir et l'écouter", "flavor": "Il parle de l'époque avant. De ce qu'était cette station. De gens qui ne sont plus là. C'est utile et triste en proportions égales.", "outcome": "rep_small+credits_tiny" },
+        { "label": "Lui demander ce qu'il sait de la station", "flavor": "Il sait des choses que les panneaux d'information ne diront jamais. Il te donne une direction.", "outcome": "rep_medium+item_rare" },
+        { "label": "Passer en le saluant", "flavor": "Il hoche la tête. Le contact minimal est quand même quelque chose.", "outcome": "rep_tiny" }
+      ]
+    },
+    {
+      "setup": "Un jardin intérieur improvisé occupe ce qui devait être une salle de réunion. Des plantes en pots, des lumières UV, et quelqu'un qui arrose avec attention.",
+      "choices": [
+        { "label": "Proposer d'aider", "flavor": "Elle accepte. Deux heures ensemble. Elle te parle de botanique, tu apprends des choses sur les plantes médicinales.", "outcome": "item_food+rep_small+hp_tiny" },
+        { "label": "Demander ce qu'elle cultive", "flavor": "'Des choses qui aident.' Elle te vend des plantes médicinales à un prix en dessous du marché.", "outcome": "item_common+lose_credits_tiny" },
+        { "label": "Observer depuis le couloir", "flavor": "Il y a quelque chose de apaisant dans quelqu'un qui s'occupe de quelque chose de vivant. Tu repars légèrement calmé.", "outcome": "stamina_small" }
+      ]
+    },
+    {
+      "setup": "Un mécano travaille sur un vaisseau dans le dock avec une précision métticuleuse. Il cherche visiblement quelque chose de précis.",
+      "choices": [
+        { "label": "Lui proposer de l'aide — tu as des pièces", "flavor": "Il accepte. Tu utilises une de tes pièces. En échange il regarde ton vaisseau.", "outcome": "ship_repair_small+lose_credits_tiny" },
+        { "label": "Lui proposer de l'aide — tu as des mains", "flavor": "Deux heures de travail. Il te paie en crédits et en savoir-faire.", "outcome": "credits_small+rep_tiny" },
+        { "label": "Lui demander son avis sur ton vaisseau", "flavor": "Il jette un œil. 'Ton moteur gauche est sur le point de lâcher. T'as huit heures avant que ça devienne intéressant.'", "outcome": "rep_small" }
+      ]
+    },
+    {
+      "setup": "Un groupe de résidents tient une réunion informelle dans une salle commune. Ils débattent de quelque chose qui concerne visiblement la station.",
+      "choices": [
+        { "label": "Rejoindre la réunion et écouter", "flavor": "Un problème de distribution de ressources. Tu as des informations utiles. Ils t'écoutent malgré ton statut d'étranger.", "outcome": "rep_medium" },
+        { "label": "Observer depuis la porte sans entrer", "flavor": "Tu comprends la politique locale. Des informations utiles pour ne pas mettre le pied dans un conflit.", "outcome": "rep_tiny" },
+        { "label": "Offrir une solution rapide et partir", "flavor": "Ça surprend tout le monde. Ça résout peut-être le problème. Tu ne sauras pas — tu es déjà parti.", "outcome": "credits_small+rep_small" }
+      ]
+    },
+    {
+      "setup": "Un enfant t'aborde avec une question sérieuse sur l'espace — où tu vas, ce que tu as vu, si c'est vrai ce qu'on dit sur les stations au-delà du secteur.",
+      "choices": [
+        { "label": "Lui répondre honnêtement — tout ce que tu sais", "flavor": "Ses yeux s'agrandissent. Il appelle d'autres enfants. Tu passes une heure à raconter. C'est la meilleure heure de ta journée.", "outcome": "rep_medium+stamina_full" },
+        { "label": "Lui raconter une histoire — vraie ou inventée", "flavor": "Il ne fera pas la différence. Mais ses parents, eux, t'écoutent depuis le couloir. Tu les as impressionnés.", "outcome": "rep_small+credits_tiny" },
+        { "label": "Le renvoyer poliment", "flavor": "Il repart déçu. Tu te souviens de la première fois qu'un adulte t'a dit non comme ça.", "outcome": "rep_minus_tiny" }
+      ]
+    },
+    {
+      "setup": "Une bibliothèque informelle s'est installée dans un ancien local commercial. Des livres sur des étagères de fortune. Un vieux à la caisse accepte les dons.",
+      "choices": [
+        { "label": "Donner quelques crédits", "flavor": "Il te remercie et te laisse lire ce que tu veux. Tu trouves quelque chose d'utile.", "outcome": "lose_credits_tiny+rep_small+item_rare" },
+        { "label": "Emprunter quelque chose sans payer", "flavor": "Il t'a vu. Il ne dit rien. Il note quelque chose. Les bibliothèques ont leurs propres dettes.", "outcome": "rep_minus_tiny" },
+        { "label": "Donner un objet dont tu n'as plus besoin", "flavor": "Il l'ajoute aux étagères avec soin. 'Les bonnes choses trouvent leur place.' Tu repars légèrement plus léger.", "outcome": "rep_medium" }
+      ]
+    },
+    {
+      "setup": "Un marché alimentaire improvisé occupe un couloir — des producteurs locaux avec de petites quantités de vraie nourriture.",
+      "choices": [
+        { "label": "Acheter des provisions", "flavor": "De la vraie nourriture. Pas reconstituée. Tu l'embales avec plus de soin que d'habitude.", "outcome": "item_food+item_food+lose_credits_small" },
+        { "label": "Goûter à un étal et négocier", "flavor": "Elle est fière de sa production. Elle te cède un prix raisonnable parce que tu as su apprécier.", "outcome": "item_food+lose_credits_tiny+rep_tiny" },
+        { "label": "Regarder sans acheter", "flavor": "La nourriture fraîche ici vaut une fortune. Tu n'as pas forcément tort de résister.", "outcome": "nothing" }
+      ]
+    },
+    {
+      "setup": "Un musicien joue dans un couloir passant. Pas pour l'argent — il n'a pas de chapeau. Il joue parce qu'il joue.",
+      "choices": [
+        { "label": "S'arrêter et écouter vraiment", "flavor": "Tu restes dix minutes. Il ne te regarde pas. Quand il s'arrête il te demande ton avis. La conversation qui suit est hors contexte.", "outcome": "rep_small+stamina_full" },
+        { "label": "Lui laisser quelques crédits", "flavor": "Il regarde l'argent. 'Je joue pas pour ça.' Il repart. Tu te sens léger.", "outcome": "rep_medium+lose_credits_tiny" },
+        { "label": "Passer sans t'arrêter", "flavor": "La musique continue derrière toi. Tu l'entends encore trois couloirs plus loin.", "outcome": "hp_tiny" }
+      ]
+    },
+    {
+      "setup": "Une salle de soins communautaire — quelques résidents qui s'occupent des autres avec les moyens du bord.",
+      "choices": [
+        { "label": "Proposer ton aide", "flavor": "Ils ont besoin de mains. Tu passes une heure à aider. En retour ils soignent ce qui cloche sur toi.", "outcome": "hp_medium+rep_medium" },
+        { "label": "Demander à être soigné toi-même", "flavor": "Ils regardent tes blessures. Ils font ce qu'ils peuvent. Ce n'est pas une clinique mais c'est efficace.", "outcome": "hp_small+lose_credits_tiny" },
+        { "label": "Observer et repartir", "flavor": "La solidarité ici est réelle. C'est un rappel que ça existe.", "outcome": "rep_tiny" }
+      ]
+    },
+    {
+      "setup": "Un couloir mène à une terrasse avec une vue sur l'espace extérieur — un hublot immense, inattendu.",
+      "choices": [
+        { "label": "S'asseoir et regarder l'espace", "flavor": "Tu passes une heure là. Sans rien faire. Le vide a quelque chose d'utile quand tu arrêtes d'en avoir peur.", "outcome": "stamina_full+hp_tiny" },
+        { "label": "Chercher quelqu'un à qui parler ici", "flavor": "Un pilote en pause. Elle connaît des routes. Elle t'en partage une.", "outcome": "rep_small+credits_small" }
+      ]
+    }
+  ],
+  "industrial": [
+    {
+      "setup": "Une machine s'est arrêtée. Un technicien est allongé dessous, les jambes dépassant. Des coups de poing sur la tôle.",
+      "choices": [
+        { "label": "Proposer ton aide — tu comprends les mécanismes", "flavor": "Ensemble vous réparez le problème. Il te paie en pièces détachées et en accès au réseau interne.", "outcome": "item_common+rep_small+credits_small" },
+        { "label": "Passer ton chemin — ses problèmes ne sont pas les tiens", "flavor": "Les coups de poing continuent. La machine ne redémarre pas. Ce n'est pas ton problème.", "outcome": "nothing" },
+        { "label": "Regarder comment il travaille — apprendre", "flavor": "Tu observes vingt minutes. Tu comprends quelque chose sur les systèmes de propulsion que tu ne savais pas.", "outcome": "rep_tiny" }
+      ]
+    },
+    {
+      "setup": "Un tuyau sous pression fuit légèrement. Les techniciens passent sans s'arrêter — c'est normal ici, ou ils n'ont pas l'autorisation de le réparer.",
+      "choices": [
+        { "label": "Tenter de réparer avec ce que tu as", "flavor": "Ça tient. Pas parfaitement. Mais ça tient. Un superviseur t'a vu. Il est impressionné puis agacé.", "outcome": "rep_small+lose_hp_tiny" },
+        { "label": "Signaler le problème au bureau de maintenance", "flavor": "Ils notent. Ils te remercient. Une petite récompense pour une vigilance qui leur évite un incident.", "outcome": "credits_tiny+rep_tiny" },
+        { "label": "Passer en évitant la fuite", "flavor": "Tu t'en fous. La station s'en fout apparemment aussi.", "outcome": "nothing" }
+      ]
+    },
+    {
+      "setup": "La salle de stockage oubliée — une porte qui n'apparaît pas sur les plans actuels mais que tu as remarquée dans le couloir.",
+      "choices": [
+        { "label": "Ouvrir la porte et explorer", "flavor": "Des pièces datant de la construction originale. Obsolètes pour certaines machines mais rares. Précieuses pour les collectionneurs.", "outcome": "item_common+item_rare+rep_tiny" },
+        { "label": "Chercher à qui appartient ce couloir", "flavor": "Un vieux technicien. Il l'avait oublié. Il te laisse prendre quelque chose en échange du rappel.", "outcome": "item_common+rep_small" }
+      ]
+    },
+    {
+      "setup": "Un robot de production est sorti de sa ligne et tourne en rond dans un couloir, répétant un geste inutile.",
+      "choices": [
+        { "label": "Essayer de le reprogrammer", "flavor": "Tu trouves le panneau d'accès. Une erreur de code basique. Il reprend sa ligne. Personne ne saura que c'était cassé.", "outcome": "rep_medium+credits_small" },
+        { "label": "Le laisser faire — c'est le problème de quelqu'un d'autre", "flavor": "Quelqu'un finira par s'en occuper. Ou pas. L'inefficacité ici est une ressource naturelle.", "outcome": "nothing" },
+        { "label": "Désactiver le robot complètement", "flavor": "Il s'arrête. Le geste répétitif s'arrête avec lui. C'est un soulagement bizarre.", "outcome": "rep_minus_tiny" }
+      ]
+    },
+    {
+      "setup": "La cafétéria des équipes est ouverte — tables longues, plateaux en métal, odeur de protéines reconstituées. Quelques techniciens en pause te regardent entrer.",
+      "choices": [
+        { "label": "S'installer et engager la conversation", "flavor": "Ils parlent de leur travail avec une fierté technique qui t'apprend plus sur la station que n'importe quel panneau d'information.", "outcome": "rep_small+item_food" },
+        { "label": "Manger rapidement et repartir", "flavor": "La nourriture est fonctionnelle. Ça fait le travail. Tu repars avec un peu plus d'énergie.", "outcome": "hp_small+lose_credits_tiny" },
+        { "label": "Écouter les conversations sans participer", "flavor": "Un problème de sécurité. Une section instable. Des informations utiles pour ne pas y aller par inadvertance.", "outcome": "rep_tiny" }
+      ]
+    },
+    {
+      "setup": "Un chariot de pièces détachées est laissé sans surveillance dans un couloir. Les pièces sont marquées mais pas comptées.",
+      "choices": [
+        { "label": "Prendre quelques pièces discrètement", "flavor": "La tentation est réelle. Tu t'en prends deux. Personne ne remarquera.", "outcome": "item_common+rep_minus_tiny" },
+        { "label": "Chercher le responsable du chariot", "flavor": "Un technicien distrait. Il te remercie d'avoir surveillé son matériel. Une petite récompense.", "outcome": "credits_tiny+rep_small" },
+        { "label": "Passer en ignorant le chariot", "flavor": "Ce n'est pas ton matériel, ce n'est pas ton problème.", "outcome": "nothing" }
+      ]
+    },
+    {
+      "setup": "Une forge artisanale dans une alcôve — quelqu'un travaille du métal avec des outils manuels, une technique ancienne dans un contexte spatial.",
+      "choices": [
+        { "label": "Observer le travail avec respect", "flavor": "L'artisan lève les yeux. Il apprécie qu'on regarde vraiment. Il te montre quelque chose de sa technique.", "outcome": "rep_medium+item_weapon_low" },
+        { "label": "Demander à acheter quelque chose", "flavor": "Il fabrique sur commande. Ce qu'il a sous la main est déjà vendu. Mais il peut faire quelque chose pour demain.", "outcome": "rep_small" },
+        { "label": "Proposer de l'aider", "flavor": "Il hésite. 'T'as des mains utiles ou des mains curieuses ?' Tu travailles. Tu apprends.", "outcome": "item_weapon_low+rep_small" }
+      ]
+    },
+    {
+      "setup": "Un accès interdit à la zone de réacteur est ouvert — maintenu ouvert par un bout de métal coincé. Intentionnel.",
+      "choices": [
+        { "label": "Passer et voir ce qu'il y a", "flavor": "Une zone de stockage secondaire hors ligne depuis une restructuration. Des équipements oubliés.", "outcome": "item_common+item_rare+lose_hp_tiny" },
+        { "label": "Retirer le morceau de métal et fermer l'accès", "flavor": "Tu l'as sécurisé. Un responsable te verra peut-être le faire. Peut-être pas.", "outcome": "rep_tiny" },
+        { "label": "Laisser comme c'est — ce n'est pas ton affaire", "flavor": "Quelqu'un avait une raison de laisser cette porte ouverte. Ce n'était peut-être pas une bonne raison.", "outcome": "nothing" }
+      ]
+    }
+  ],
+  "scientific": [
+    {
+      "setup": "Un chercheur est manifestement bloqué sur quelque chose. Il regarde son terminal avec une fixité qui suggère des heures sans progrès.",
+      "choices": [
+        { "label": "Proposer un regard neuf — pas d'expertise mais un angle frais", "flavor": "Tu vois quelque chose qu'il a cessé de voir. Il réalise le problème en dix secondes. Il est embarrassé et reconnaissant.", "outcome": "rep_medium+credits_small" },
+        { "label": "Lui demander sur quoi il travaille", "flavor": "Il explique. Longuement. C'est fascinant ou incompréhensible selon ton niveau d'intérêt. Mais il est heureux de parler.", "outcome": "rep_small" },
+        { "label": "Le laisser à ses affaires", "flavor": "Le chercheur n'a pas besoin de toi. Il a besoin de temps.", "outcome": "nothing" }
+      ]
+    },
+    {
+      "setup": "Un laboratoire dont la porte est entrouverte. À l'intérieur, des machines qui font des choses que tu ne comprends pas, et personne pour surveiller.",
+      "choices": [
+        { "label": "Entrer et examiner les machines", "flavor": "Certaines machines ont des panneaux de lecture. Tu comprends partiellement. Tu notes des choses.", "outcome": "rep_small+item_rare" },
+        { "label": "Prendre quelque chose qui a l'air portable et utile", "flavor": "Un objet expérimental. Tu ne sais pas ce que c'est. C'est peut-être pour ça que c'est intéressant.", "outcome": "item_rare+rep_minus_small" },
+        { "label": "Fermer la porte et ne rien dire", "flavor": "La sécurité d'un laboratoire scientifique est le problème de quelqu'un d'autre.", "outcome": "rep_tiny" }
+      ]
+    },
+    {
+      "setup": "Un terminal public affiche les résultats d'une expérience en cours. Des données en temps réel que tu peux lire si tu t'approches.",
+      "choices": [
+        { "label": "Lire et essayer de comprendre", "flavor": "Les données mesurent quelque chose. Tu reconnais les tendances. Ce que ces tendances signifient t'échappe mais tu as une impression d'ensemble.", "outcome": "rep_small" },
+        { "label": "Télécharger les données sur un terminal portable", "flavor": "Elles ont peut-être de la valeur pour quelqu'un. Les informations se monnaient.", "outcome": "credits_small+rep_minus_tiny" }
+      ]
+    },
+    {
+      "setup": "Un sujet expérimental — humain, post-augmentation — se repose dans un couloir de récupération. Il te regarde avec des yeux modifiés.",
+      "choices": [
+        { "label": "Lui parler — lui demander comment il va", "flavor": "'Mieux qu'avant. Différemment qu'avant. C'est pas la même chose.' Il sourit avec des muscles qui ne sourient pas tout à fait normalement.", "outcome": "rep_small" },
+        { "label": "Lui proposer quelque chose — eau, nourriture", "flavor": "Il accepte avec une reconnaissance réelle. Ce qu'il subit mérite peut-être un peu de gentillesse basique.", "outcome": "rep_medium+lose_credits_tiny" },
+        { "label": "Passer sans s'arrêter", "flavor": "Il ne demandait rien. Tu ne lui dois rien. C'est probablement vrai.", "outcome": "nothing" }
+      ]
+    },
+    {
+      "setup": "Un archiviste est entouré de dossiers physiques qu'il essaie manifestement de classer selon un système qui lui échappe.",
+      "choices": [
+        { "label": "Proposer d'aider à classer", "flavor": "Deux heures de travail ensemble. Il est content. Il te laisse lire ce que tu veux dans les archives en échange.", "outcome": "rep_medium+item_rare" },
+        { "label": "Lui demander si les archives contiennent quelque chose d'utile sur les stations", "flavor": "Il cherche. Il trouve. Des informations sur des routes perdues, des stations cachées.", "outcome": "rep_small+credits_medium" }
+      ]
+    },
+    {
+      "setup": "Un couloir mène à une serre intérieure — des plantes qui n'ont aucune raison botanique d'être ensemble mais sont là, soigneusement entretenues.",
+      "choices": [
+        { "label": "Explorer la serre", "flavor": "Une collection de plantes médicinales spatiales. Certaines introuvables dans les marchés normaux.", "outcome": "item_common+hp_small" },
+        { "label": "Parler au botaniste qui y travaille", "flavor": "Il te parle de chaque plante avec une intensité qui dépasse la botanique. Il t'en offre une pour tes soins.", "outcome": "item_common+rep_small" }
+      ]
+    },
+    {
+      "setup": "Une salle d'observation donne sur une expérience en cours — quelque chose de grand, de lent, qui modifie quelque chose dans l'espace.",
+      "choices": [
+        { "label": "Rester observer le temps qu'il faut", "flavor": "Tu ne comprends pas tout. Mais tu vois quelque chose changer. C'est suffisant pour aujourd'hui.", "outcome": "rep_tiny+stamina_small" },
+        { "label": "Demander à un technicien des explications", "flavor": "Il est ravi qu'on demande. Il t'explique plus que tu ne voulais savoir.", "outcome": "rep_small" }
+      ]
+    }
+  ],
+  "ruins": [
+    {
+      "setup": "Une salle intacte dans les ruines — comme si le temps s'y était arrêté le jour de la catastrophe. Table mise, verre renversé, hologramme figé.",
+      "choices": [
+        { "label": "Toucher l'hologramme pour le relancer", "flavor": "Il reprend. Une réunion. Des gens qui parlent de quelque chose qui ne se produira jamais maintenant.", "outcome": "rep_small+item_rare" },
+        { "label": "Fouiller la salle méthodiquement", "flavor": "Des objets du quotidien qui ont une valeur maintenant qu'ils n'auraient jamais dû avoir.", "outcome": "credits_medium+item_common" },
+        { "label": "Partir sans toucher à rien", "flavor": "Certaines choses méritent de rester comme elles sont. C'est une forme de respect.", "outcome": "rep_tiny" }
+      ]
+    },
+    {
+      "setup": "Un couloir effondré partiellement — une brèche assez large pour passer en biais. De l'autre côté, de la lumière.",
+      "choices": [
+        { "label": "Passer malgré le risque d'effondrement", "flavor": "Tu passes. La structure craque. Tu cours. Tu arrives de l'autre côté avec du plâtre dans les cheveux et une pièce inconnue.", "outcome": "item_rare+lose_hp_tiny" },
+        { "label": "Lancer quelque chose d'abord pour tester la stabilité", "flavor": "La structure tient. Tu passes prudemment. La pièce au-delà était celle d'un officier.", "outcome": "item_weapon_low+credits_medium" },
+        { "label": "Ne pas prendre le risque", "flavor": "Sage. Les ruines ne s'améliorent pas avec le temps.", "outcome": "nothing" }
+      ]
+    },
+    {
+      "setup": "Des inscriptions sur les murs — des noms, des dates, des messages laissés par des survivants juste après. Une archive humaine.",
+      "choices": [
+        { "label": "Les lire toutes — prendre le temps", "flavor": "Des dizaines de noms. Des centaines de messages. Tu comprends mieux ce que cet endroit était.", "outcome": "rep_medium+stamina_full" },
+        { "label": "Photographier les inscriptions", "flavor": "Des données historiques. Quelqu'un paiera pour ça — un historien, un archiviste, une famille.", "outcome": "credits_medium" },
+        { "label": "En trouver une qui parle d'un endroit précis", "flavor": "Un message qui décrit un cache. Les survivants planifiaient un retour qui n'a pas eu lieu.", "outcome": "credits_large" }
+      ]
+    },
+    {
+      "setup": "Un système d'alarme de la structure originale s'est remis en marche — des sons courts, réguliers, qui viennent de partout et de nulle part.",
+      "choices": [
+        { "label": "Chercher la source et l'éteindre", "flavor": "C'est dans une armoire électrique. Cinquante ans de charge sur une batterie de secours. En l'éteignant tu trouves ce qu'elle alimentait.", "outcome": "item_rare+credits_small" },
+        { "label": "Ignorer et continuer", "flavor": "Le son continue. Ta concentration est affectée. Mais tu trouves quand même ce que tu cherchais.", "outcome": "item_common+lose_hp_tiny" },
+        { "label": "Reculer — une alarme active peut attirer du monde", "flavor": "Sage. Les alarmes dans les ruines sont des balises pour ceux qui savent écouter.", "outcome": "nothing" }
+      ]
+    },
+    {
+      "setup": "Une capsule de survie intacte. Elle a été activée et n'a jamais été récupérée. Quelqu'un n'est jamais arrivé.",
+      "choices": [
+        { "label": "Ouvrir la capsule", "flavor": "Elle est vide. Elle a été ouverte de l'intérieur il y a longtemps. La personne est partie. L'équipement est là.", "outcome": "item_common+item_rare+credits_small" },
+        { "label": "Laisser la capsule fermée", "flavor": "Elle n'est peut-être pas vide. Tu préfères ne pas savoir.", "outcome": "rep_tiny" },
+        { "label": "Signaler les coordonnées — quelqu'un cherche peut-être cette capsule", "flavor": "Une récompense arrive plus tard. La famille d'un disparu. Ça compte.", "outcome": "rep_medium+credits_medium" }
+      ]
+    },
+    {
+      "setup": "Un scavenger chevronné fouille la même zone que toi. Il t'a vu. Il ne t'a pas attaqué. Il t'évalue.",
+      "choices": [
+        { "label": "Proposer de partager la zone", "flavor": "Il accepte avec méfiance. Vous travaillez en parallèle. À la fin vous comparez. Il avait le meilleur secteur.", "outcome": "credits_small+item_common" },
+        { "label": "Proposer de travailler ensemble", "flavor": "Alliance temporaire. Il connaît les ruines mieux que toi. Tu trouves plus que tout seul.", "outcome": "credits_large+rep_small" },
+        { "label": "L'intimider pour récupérer son secteur", "flavor": "Il n'est pas intimidé facilement. Tu vas devoir choisir les choses sérieusement maintenant.", "outcome": "combat_medium" }
+      ]
+    },
+    {
+      "setup": "Une bibliothèque préservée — les livres ont survécu mieux que les murs qui les contenaient.",
+      "choices": [
+        { "label": "Chercher quelque chose d'utile parmi les livres", "flavor": "Manuels techniques d'une époque révolue. Certaines informations sont toujours vraies.", "outcome": "rep_small+item_rare" },
+        { "label": "Prendre un livre au hasard et partir", "flavor": "Tu te donneras la peine de lire plus tard. Ou pas. L'intention compte pour quelque chose.", "outcome": "rep_tiny" },
+        { "label": "Chercher les documents non-publics", "flavor": "Les bibliothèques gardaient des archives privées. Des contrats. Des correspondances. Des dettes oubliées.", "outcome": "credits_medium+rep_minus_tiny" }
+      ]
+    },
+    {
+      "setup": "Un générateur de secours ronronne encore dans une alcôve — cinquante ans de charge résiduelle qui alimentent quelque chose d'inconnu.",
+      "choices": [
+        { "label": "Suivre le câble d'alimentation", "flavor": "Il mène à une salle verrouillée que le générateur maintient fermée. Ou ouverte. Tu ne sais pas encore.", "outcome": "item_rare+credits_large" },
+        { "label": "Débrancher le générateur", "flavor": "Quelque chose s'arrête quelque part. Tu entends une porte se fermer définitivement.", "outcome": "nothing" },
+        { "label": "Laisser le générateur fonctionner — il fait peut-être quelque chose d'utile", "flavor": "Quelqu'un a programmé ça pour une raison. Ne pas toucher est parfois sage.", "outcome": "rep_tiny" }
+      ]
+    }
+  ],
+  "nature": [
+    {
+      "setup": "Une créature te regarde depuis la végétation. Elle ne fuit pas. Elle évalue.",
+      "choices": [
+        { "label": "Rester immobile et attendre", "flavor": "Après dix minutes elle s'approche. Puis repart. Quelque chose vient de se passer. Tu n'es pas sûr de quoi.", "outcome": "rep_medium+hp_tiny" },
+        { "label": "S'approcher lentement", "flavor": "Elle recule de la même distance que tu avances. Ce n'est pas de la peur — c'est du protocole.", "outcome": "rep_small" },
+        { "label": "Partir et la laisser tranquille", "flavor": "Le meilleur choix dans toutes les situations impliquant des créatures inconnues.", "outcome": "rep_tiny" }
+      ]
+    },
+    {
+      "setup": "Une plante que tu n'as jamais vue avec des propriétés visiblement particulières — des feuilles qui changent de couleur au toucher.",
+      "choices": [
+        { "label": "Cueillir quelques feuilles prudemment", "flavor": "Elles gardent leur couleur différente. Un botaniste paierait cher pour ça. Ou un apothicaire.", "outcome": "item_rare+credits_small" },
+        { "label": "Tester une feuille — la toucher et observer", "flavor": "Ça chauffe légèrement. Puis ça s'arrête. Inoffensif ou phase précédant autre chose. Difficile à dire.", "outcome": "hp_tiny" },
+        { "label": "La photographier et la laisser", "flavor": "La documentation a sa valeur. Et certaines plantes exotiques punissent la cueillette.", "outcome": "rep_small" }
+      ]
+    },
+    {
+      "setup": "Un bosquet particulièrement dense cache quelque chose — tu le sens avant de le voir.",
+      "choices": [
+        { "label": "T'enfoncer dans le bosquet", "flavor": "Au centre, un espace clair. Des pierres disposées. Quelqu'un vient ici régulièrement pour une raison que tu ne comprends pas mais respectes.", "outcome": "rep_medium+stamina_full" },
+        { "label": "Contourner le bosquet", "flavor": "Ce que tu ne vois pas ne peut pas te compliquer la vie.", "outcome": "nothing" }
+      ]
+    },
+    {
+      "setup": "Un guide local te propose de te montrer des espèces rares contre une compensation.",
+      "choices": [
+        { "label": "Accepter et le payer", "flavor": "Il te mène à des endroits qu'aucune carte ne montre. Tu reviens avec des connaissances et des échantillons.", "outcome": "lose_credits_small+item_rare+rep_medium" },
+        { "label": "Négocier le prix", "flavor": "Il accepte moins mais te montre moins. La proportionnalité est sa philosophie.", "outcome": "lose_credits_tiny+item_common+rep_small" },
+        { "label": "Refuser et explorer seul", "flavor": "Tu te perds trois fois. Tu trouves quand même quelque chose d'intéressant.", "outcome": "item_common+lose_hp_tiny" }
+      ]
+    },
+    {
+      "setup": "Une rivière artificielle coule à travers la zone de nature — un système d'irrigation qui ressemble assez à un vrai cours d'eau pour troubler.",
+      "choices": [
+        { "label": "Suivre la rivière en amont", "flavor": "Elle mène à sa source — un réservoir de filtration avec un accès technique non surveillé.", "outcome": "item_common+credits_small" },
+        { "label": "Suivre la rivière en aval", "flavor": "Elle se perd dans la végétation, puis dans un système de drainage. Au bord du drainage, quelqu'un a laissé quelque chose.", "outcome": "item_rare" },
+        { "label": "Rester au bord et te reposer", "flavor": "Le bruit de l'eau artificielle est étrangement apaisant. Tu récupères.", "outcome": "stamina_full+hp_small" }
+      ]
+    },
+    {
+      "setup": "Un nid de quelque chose — des œufs ou des structures organisées qui ressemblent à des œufs.",
+      "choices": [
+        { "label": "Ne pas y toucher et partir", "flavor": "La bonne décision dans 90% des situations impliquant un nid.", "outcome": "rep_tiny" },
+        { "label": "Les examiner de près sans toucher", "flavor": "Ce ne sont pas des œufs. Ce sont des spores d'une plante qui se reproduit en structures sphériques. Intéressant.", "outcome": "item_rare+rep_small" },
+        { "label": "En prendre un pour l'analyser", "flavor": "Il éclate. Ce que contenait l'œuf est maintenant sur toi. Chaud. Légèrement piquant. Ça va.", "outcome": "lose_hp_tiny+item_common" }
+      ]
+    }
+  ],
+  "luxury": [
+    {
+      "setup": "Une table de restaurant a été quittée précipitamment — repas à moitié mangé, verre renversé, chaise repoussée.",
+      "choices": [
+        { "label": "Manger ce qui reste — pas fier mais pragmatique", "flavor": "C'est de la vraie cuisine. Pas reconstituée. Tu te promets de ne plus jamais parler de cet épisode.", "outcome": "hp_medium+stamina_small" },
+        { "label": "Chercher ce qui s'est passé", "flavor": "Un incident discret — quelqu'un a reconnu quelqu'un qu'il ne devait pas reconnaître. Ça a des valeurs marchandes.", "outcome": "credits_small+rep_small" },
+        { "label": "Signaler la table inoccupée à un serveur", "flavor": "Il te remercie avec une politesse professionnelle parfaite. Tu te rappelles que la politesse ici est un masque.", "outcome": "rep_tiny" }
+      ]
+    },
+    {
+      "setup": "Un coffre-fort encastré dans un mur, accidentellement ouvert — la porte entrouverte, à l'intérieur des objets visibles.",
+      "choices": [
+        { "label": "Prendre ce qui est à l'intérieur rapidement", "flavor": "Des bijoux de voyage. Des crédits en espèces. Un terminal crypté. Tu prends et tu pars.", "outcome": "credits_huge+rep_minus_medium" },
+        { "label": "Refermer le coffre discrètement", "flavor": "Tu fais le bon geste. Quelqu'un te voit faire ce bon geste. Tu récolteras peut-être quelque chose de cette vertu.", "outcome": "rep_medium" },
+        { "label": "Prendre juste les crédits et refermer", "flavor": "Compromis moral honnête. T'as pris quelque chose, pas tout. Tu te dis que ça compte.", "outcome": "credits_medium+rep_minus_tiny" }
+      ]
+    },
+    {
+      "setup": "Un personnage influent s'ennuie manifestement dans une salle d'attente. Il te regarde comme si tu pourrais être une distraction acceptable.",
+      "choices": [
+        { "label": "Engager la conversation", "flavor": "Il est intéressé. Tu as quelque chose à dire. Il a quelque chose à offrir. Un échange rare.", "outcome": "rep_medium+credits_medium" },
+        { "label": "L'éviter — les personnages influents sont des problèmes potentiels", "flavor": "Sage dans la plupart des contextes. Ici c'était peut-être une opportunité.", "outcome": "nothing" },
+        { "label": "Le flatter ouvertement", "flavor": "Il voit la flatterie pour ce qu'elle est. Et il aime ça quand même. Il te donne quelque chose pour ton honnêteté paradoxale.", "outcome": "credits_small+rep_small" }
+      ]
+    },
+    {
+      "setup": "Une vente aux enchères privée a lieu dans une salle latérale. La porte est gardée mais les gardes sont distraits.",
+      "choices": [
+        { "label": "Entrer dans la salle", "flavor": "Personne ne te demande ton identité. Tu sembles à ta place. Ce que tu achètes — ou observes — vaut le risque.", "outcome": "item_rare+credits_medium" },
+        { "label": "Observer depuis le couloir", "flavor": "Tu vois des visages. Des noms viendraient peut-être plus tard. L'information a une valeur si tu sais à qui la vendre.", "outcome": "rep_small" }
+      ]
+    },
+    {
+      "setup": "Un bar du niveau supérieur dont tu n'aurais normalement pas l'accès. La porte est ouverte — un nettoyeur sort.",
+      "choices": [
+        { "label": "Entrer avec assurance comme si tu étais attendu", "flavor": "L'assurance ouvre beaucoup de portes dans les endroits de luxe. Tu te commandes quelque chose. Le barman sert.", "outcome": "hp_small+stamina_full+lose_credits_small" },
+        { "label": "Attendre que quelqu'un d'autre entre et te faufiler", "flavor": "Ça marche. Tu passes inaperçu. Vingt minutes de luxe discret.", "outcome": "rep_small+stamina_small" },
+        { "label": "Utiliser l'ouverture pour voler un accès badge", "flavor": "Le badge d'un employé ouvre d'autres portes que celle-ci.", "outcome": "item_rare+rep_minus_small" }
+      ]
+    },
+    {
+      "setup": "Un marché d'artefacts de luxe — des pièces dont le prix est affiché en or, pas en crédits.",
+      "choices": [
+        { "label": "Regarder et évaluer les prix", "flavor": "Certains artefacts sont sous-estimés par leurs propriétaires actuels. Tu identifies une opportunité.", "outcome": "rep_small+credits_small" },
+        { "label": "Vendre quelque chose que tu as", "flavor": "Ici, un artefact commun vaut trois fois son prix normal. L'information a circulé.", "outcome": "credits_large" },
+        { "label": "Proposer un échange", "flavor": "Les marchands de luxe préfèrent l'argent. Mais ils reconnaissent la valeur d'une chose rare.", "outcome": "item_rare+credits_medium" }
+      ]
+    }
+  ],
+  "military": [
+    {
+      "setup": "Un soldat en pause mange seul dans un couloir latéral. Il a l'air de quelqu'un qui a besoin de silence.",
+      "choices": [
+        { "label": "S'asseoir à distance respectueuse", "flavor": "Il finit par te parler. Pas de ce qu'il fait — de ce qu'il a laissé derrière. C'est utile à entendre.", "outcome": "rep_small" },
+        { "label": "Lui offrir quelque chose à manger", "flavor": "Il accepte avec une surprise sincère. Un civil qui offre quelque chose à un soldat, ici c'est inattendu.", "outcome": "rep_medium+lose_credits_tiny" },
+        { "label": "Passer sans s'arrêter", "flavor": "Il préférait probablement ça.", "outcome": "nothing" }
+      ]
+    },
+    {
+      "setup": "Une zone d'entraînement est visible depuis une passerelle. Des recrues s'entraînent en formation.",
+      "choices": [
+        { "label": "Observer attentivement les techniques de combat", "flavor": "Tu retiens quelque chose d'utile sur la coordination. Ça pourrait servir.", "outcome": "rep_tiny+stamina_small" },
+        { "label": "Chercher un officier pour demander l'accès à la zone", "flavor": "Il est surpris par la demande directe. Il dit non mais il te respecte pour ça.", "outcome": "rep_small" }
+      ]
+    },
+    {
+      "setup": "Un armurerie secondaire dont la porte est déverrouillée. Un technicien à l'intérieur fait l'inventaire.",
+      "choices": [
+        { "label": "Entrer et proposer de l'aide pour l'inventaire", "flavor": "Il accepte. Tu travailles deux heures. Tu connais maintenant le stock exact de cette armurerie.", "outcome": "rep_small+item_common" },
+        { "label": "Demander à acheter quelque chose", "flavor": "Il peut vendre au taux militaire si ta réputation tient. C'est la moitié du prix standard.", "outcome": "item_weapon_mid+lose_credits_small" },
+        { "label": "Prendre quelque chose rapidement pendant qu'il a le dos tourné", "flavor": "Il l'a vu dans le reflet. Il ne dit rien. Il note ton visage.", "outcome": "item_weapon_low+rep_minus_medium" }
+      ]
+    },
+    {
+      "setup": "Un couloir mène à la salle de communications centrale. La porte est ouverte — changement d'équipe en cours.",
+      "choices": [
+        { "label": "Entrer dans la confusion du changement d'équipe", "flavor": "Tu entends des fragments de communications. Des informations sur des mouvements, des incidents, des positions.", "outcome": "rep_small+credits_medium" },
+        { "label": "Rester à la porte et écouter depuis le couloir", "flavor": "Moins risqué. Tu entends moins. Mais tu entends quand même quelque chose.", "outcome": "credits_small" },
+        { "label": "Continuer sans t'arrêter", "flavor": "La discrétion est une qualité appréciée dans une station militaire.", "outcome": "rep_tiny" }
+      ]
+    },
+    {
+      "setup": "Un affichage des missions actives est visible dans un couloir de passage. Des informations qui ne devraient pas être publiques.",
+      "choices": [
+        { "label": "Lire l'affichage discrètement en passant", "flavor": "Des missions dans des secteurs que tu connais. Des timing. Des cibles. Valeur marchande certain.", "outcome": "credits_medium+rep_minus_tiny" },
+        { "label": "Prendre une photo de l'affichage", "flavor": "Un garde t'a vu. Il s'approche. Tu as dix secondes pour trouver une explication crédible.", "outcome": "credits_large+combat_easy" },
+        { "label": "Passer sans t'arrêter", "flavor": "Un civil qui ne regarde pas les affichages militaires est un civil que les gardes n'ont pas à surveiller.", "outcome": "rep_tiny" }
+      ]
+    },
+    {
+      "setup": "Le mess des officiers est accessible — une erreur de planning laisse la salle vide et la nourriture prête.",
+      "choices": [
+        { "label": "Manger rapidement avant que quelqu'un arrive", "flavor": "La nourriture des officiers est d'un niveau différent. Tu manges vite mais tu manges bien.", "outcome": "hp_medium+stamina_full+lose_hp_tiny" },
+        { "label": "Prendre quelque chose et partir", "flavor": "La nourriture militaire de qualité est une monnaie dans les bons endroits.", "outcome": "item_food+item_food" },
+        { "label": "Repartir sans toucher", "flavor": "Les officiers comptent leurs rations. Les civils qui y touchent créent des problèmes.", "outcome": "rep_tiny" }
+      ]
+    }
+  ],
+  "generic": [
+    {
+      "setup": "Un couloir qui ne t'intéressait pas mène à quelque chose qui t'intéresse.",
+      "choices": [
+        { "label": "Explorer plus loin", "flavor": "Une pièce oubliée. Des choses oubliées. Certaines ont de la valeur.", "outcome": "credits_small+item_common" },
+        { "label": "Rester sur ton chemin", "flavor": "Le détour aurait peut-être valu quelque chose. Peut-être pas.", "outcome": "nothing" }
+      ]
+    },
+    {
+      "setup": "Un accès de maintenance ouvert donne sur les entrailles de la station — câbles, tuyaux, la logistique invisible.",
+      "choices": [
+        { "label": "Entrer et explorer les infrastructures", "flavor": "Tu découvres un passage que la station ignorait. Ou avait oublié. Il mène quelque part d'utile.", "outcome": "credits_medium+item_common" },
+        { "label": "Refermer et partir", "flavor": "Ce n'est pas là où tu devais aller.", "outcome": "nothing" }
+      ]
+    },
+    {
+      "setup": "Une conversation entre deux personnes s'arrête quand tu passes. Ils attendent que tu sois passé pour reprendre.",
+      "choices": [
+        { "label": "Ralentir pour écouter la suite", "flavor": "Quelques mots. Une adresse. Un nom. Peut-être utile, probablement pas.", "outcome": "rep_tiny+credits_tiny" },
+        { "label": "Accélérer — ne pas être le genre de personne qui écoute", "flavor": "Ce qu'ils disaient ne te concernait probablement pas.", "outcome": "rep_tiny" }
+      ]
+    },
+    {
+      "setup": "Un objet est tombé de la poche de quelqu'un qui s'éloigne sans s'en apercevoir.",
+      "choices": [
+        { "label": "Le ramasser et le rendre", "flavor": "Il se retourne surpris. C'est quelque chose qu'il ne pouvait pas se permettre de perdre. Il est reconnaissant.", "outcome": "rep_medium+credits_small" },
+        { "label": "Le ramasser et le garder", "flavor": "Un objet de valeur qui n'a pas de nom dessus est un objet sans propriétaire.", "outcome": "item_common+rep_minus_tiny" },
+        { "label": "Continuer sans s'arrêter", "flavor": "Quelqu'un d'autre le verra peut-être. Peut-être pas.", "outcome": "nothing" }
+      ]
+    },
+    {
+      "setup": "Un terminal public est déverrouillé et donne accès à des informations locales non publiques.",
+      "choices": [
+        { "label": "Consulter les informations", "flavor": "Des prix, des locations, des personnes recherchées. Un avantage informationnel temporaire.", "outcome": "credits_small+rep_tiny" },
+        { "label": "Laisser le terminal comme il est", "flavor": "Les informations non publiques ont souvent des propriétaires qui s'inquiètent quand elles circulent.", "outcome": "rep_tiny" }
+      ]
+    },
+    {
+      "setup": "Une odeur de nourriture réelle vient d'un appartement dont la porte est entrouverte.",
+      "choices": [
+        { "label": "Frapper et demander si tu peux acheter quelque chose", "flavor": "Une famille surprenante. Elle partage son repas contre des crédits et une conversation.", "outcome": "hp_small+stamina_small+lose_credits_tiny" },
+        { "label": "Continuer — on ne frappe pas chez les gens par odeur de curiosité", "flavor": "Le bon sens social l'emporte.", "outcome": "nothing" }
+      ]
+    }
+  ]
+}

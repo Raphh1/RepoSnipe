@@ -1,0 +1,122 @@
+Ce qui manque encore pour la replayabilité vraie
+Les quêtes chaînées — actuellement chaque quête est isolée. Des arcs en 3-5 étapes forceraient des run différentes par chemin narratif.
+Stations dynamiques — une station devrait changer selon tes actions passées. Si tu as tué Alanossa, Arc Ouest devrait être différente.
+Rivaux/alliés persistants — un PNJ qui se souvient que tu l'as trahis et réapparaît plus tard.
+Events verrouillés par classe — certaines zones/conversations complètement inaccessibles selon ta classe forcerait à rejouer pour "tout voir".
+Secrets progressifs — des lieux qui ne se débloquent qu'après avoir rencontré certains PNJs dans un ordre précis.
+La bonne news : avec les systèmes ajoutés (JSON events, multi-ennemis, stances, intents), chaque combat et chaque exploration est maintenant beaucoup moins 
+
+répétitif. La replayabilité du gameplay est bonne. C'est la replayabilité narrative qui est le prochain chantier.
+
+
+Bonne question — soyons honnêtes sur l'état actuel.
+
+Ce qui est trop facile à atteindre
+Les arcs se déclenchent presque tout seuls :
+
+"La Dette de Sang" → juste visiter Arc Ouest. Jour 2 possible.
+"Le Prophète du Vide" → 5 stations visitées. Jour 3-4.
+La Station Nexus → réputation 50 pour Alanossa. Trivial.
+Les objectifs majeurs ont peu de vrais verrous :
+
+Chef de faction → 6 missions. Faisable en 20 jours.
+Seigneur de l'Espace → accessible si tu rush les 4 stations.
+Grand Nettoyage (8 boss) → le seul qui résiste vraiment.
+L'économie ne presse pas assez :
+
+Les crédits arrivent facilement via les quêtes JSON.
+Pas de spirale de difficulté — le danger ne monte pas vraiment avec le temps.
+Ce qui manque pour que ça résiste
+Problème	Solution
+Arcs trop accessibles	Verrous stricts : niveau de réputation élevé, boss déjà vaincus, secrets découverts dans l'ordre
+Pas de progression entre early/mid/late	Stations bloquées qui s'ouvrent selon des conditions précises
+Boss finaux trop faibles	Scaling agressif — les boss Nexus devraient nécessiter T4+ gear
+Pas de pression économique	Coûts d'entretien quotidiens, inflation selon le jour
+Échecs sans conséquences	Un arc raté = fermé définitivement cette run
+Ce que je te propose
+Deux axes : les verrous de progression (contenu inaccessible tant que t'as pas prouvé quelque chose) et la pression économique (la run se dégrade si tu stagnes).
+
+Tu veux que j'implémente les deux, ou tu as une priorité ?
+
+TU IMPLEMENTE TOUT CE QUE TU PEUX POUR QUE LE JEU NE SOIT PAS D'UNE SIMPLICITER HORS NORME PAR PITIé
+
+Read \\wsl.localhost\Ubuntu\home\raphaelcau\RepoSnipe\src\World\Universe.cs
+Read \\wsl.localhost\Ubuntu\home\raphaelcau\RepoSnipe\src\Gameplay\Events.cs (lines 159-218)
+Grep "UnlockCondition|record.*Unlock|Unlock.*record" (in \\wsl.localhost\Ubuntu\home\raphaelcau\RepoSnipe\src)
+2 lines of output
+Grep "AccessibleFrom|IsAccessible|CanAccess" (in \\wsl.localhost\Ubuntu\home\raphaelcau\RepoSnipe\src)
+2 lines of output
+Read \\wsl.localhost\Ubuntu\home\raphaelcau\RepoSnipe\src\World\Universe.cs (lines 355-414)
+Read \\wsl.localhost\Ubuntu\home\raphaelcau\RepoSnipe\src\World\Universe.cs (from line 442)
+
+J'ai tout ce qu'il me faut. Je vais implémenter tout en une passe :
+
+1-Conditions d'accès aux stations drastiquement renforcées
+2-Coûts quotidiens + entretien vaisseau
+3-Escalade des menaces avec le temps
+4-Conséquences de mort sévères
+5-Vérification de l'équipement avant les boss
+6-Portes des arcs narratifs beaucoup plus strictes
+
+Edit \\wsl.localhost\Ubuntu\home\raphaelcau\RepoSnipe\src\World\Universe.cs
+Added 8 lines
+
+Edit \\wsl.localhost\Ubuntu\home\raphaelcau\RepoSnipe\src\World\Universe.cs
+Added 22 lines
+
+API Error: Usage credits required for 1M context · turn on usage credits at claude.ai/settings/usage, or use --model to switch to standard context
+
+
+Bonne question — avant de coder quoi que ce soit, voici mon analyse des axes les plus impactants.
+
+Ce qui manque au combat actuel
+Le combat actuel est essentiellement : attaquer → ennemi attaque → répéter. Les choix existent mais ne créent pas de vraie tension tactique — il n'y a pas de lecture de l'ennemi, pas de contre-jeu, pas de momentum.
+
+Les 5 systèmes qui changeraient vraiment la donne
+1. Intentions visibles de l'ennemi
+Chaque tour, l'ennemi télégraphe ce qu'il va faire :
+
+"Il prend de l'élan — attaque lourde imminente"
+"Il recule — il cherche à fuir ou à recharger"
+"Il vise ta tête — coup critique probable"
+"Il tente de te désarmer"
+Le joueur peut réagir : Bloquer (réduit les dégâts d'un coup lourd), Contrer (attaque préemptive risquée), Esquiver (tente de zéro dégâts, faible chance).
+
+Impact : énorme. Chaque tour devient une lecture + décision au lieu d'un spam d'attaque.
+
+2. Stances de combat
+En début de chaque tour, tu choisis une posture avant ton action :
+
+Stance	Effet
+Offensive	+30% dégâts, -20% défense
+Défensive	-30% dégâts reçus, stamina +10/tour
+Esquive	40% de chance d'éviter le prochain coup, mais attaque faible
+Simple à implémenter, crée une lecture du risque à chaque tour.
+
+3. Actions de classe uniques
+Chaque classe a 1 action exclusive en combat :
+
+Classe	Action
+Seigneur de guerre	Intimidation de combat — force l'ennemi à perdre son tour
+Médecin	Soin rapide — +HP sans utiliser un tour complet
+Hackeur	Pirater l'équipement — désactive l'arme ennemie 2 tours
+Contrebandier	Fuite garantie — toujours 100% de succès
+Vagabond	Coup bas — ignore toute défense mais coûte de la réputation
+4. Multi-ennemis avec priorités
+Certains combats = 2-3 ennemis avec des rôles différents :
+
+Un tireur à distance (attaque chaque tour si non interrompu)
+Un tank au corps à corps (bouclier pour les autres)
+Un soutien (soigne ses alliés)
+Le joueur doit prioriser qui attaquer en premier. Tuer le soutien d'abord ? Ou le tireur qui fait des dégâts constants ?
+
+5. Momentum & Finishers
+3 attaques consécutives sans être touché → barre de Momentum pleine → déblocage d'une attaque dévastatrice gratuite.
+Si tu prends un coup pendant la construction → momentum remis à zéro.
+
+Crée une tension : maintenir l'offensive ou protéger le momentum ?
+
+Ma recommandation
+Commencer par 1 + 2 — ils changent fundamentalement la lecture de chaque tour sans complexifier les stats. Le 3 est rapide à ajouter et renforce l'identité des classes. Les 4 et 5 pour après.
+
+ajoute tout ça
